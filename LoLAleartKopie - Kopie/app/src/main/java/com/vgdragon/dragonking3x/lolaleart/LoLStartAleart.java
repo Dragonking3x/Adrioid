@@ -1,9 +1,7 @@
 package com.vgdragon.dragonking3x.lolaleart;
 
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.os.Build;
-import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -77,15 +75,15 @@ public class LoLStartAleart implements Runnable{
 
                     setConnecting(1);
                     ma.setButtonTxt("Disconnect");
-                    ma.setGameinfo("");
-                    ma.setConnectTxt("CONNECTED");
+                    ma.setGameInfoTxt("");
+                    ma.setConnectTxtTxt("CONNECTED");
                     ma.setConnectButton(true);
 
 
                     while (getExit() == 0) {
 
                         gameStart = in.readLine();
-                        ma.setGameinfo(gameStart);
+                        ma.setGameInfoTxt(gameStart);
 
                         if (gameStart.equalsIgnoreCase("Game Start")) {
                             ma.playSound();
@@ -94,7 +92,7 @@ public class LoLStartAleart implements Runnable{
                     }
 
                     setConnecting(0);
-                    ma.setConnectTxt("Disconnected");
+                    ma.setConnectTxtTxt("Disconnected");
                     ma.setButtonTxt("Connect");
                     in.close();
                     out.close();
@@ -109,7 +107,7 @@ public class LoLStartAleart implements Runnable{
     }
 
     public void updateConnectTxt(String text){
-        ma.setConnectTxt(text);
+        ma.setConnectTxtTxt(text);
 
     }
 
