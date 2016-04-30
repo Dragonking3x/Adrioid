@@ -44,7 +44,8 @@
         android:id="@+id/gameInfoTxt"
         android:layout_below="@+id/connectTxt"
         android:layout_centerHorizontal="true"
-        android:textSize="30dp" />
+        android:textSize="50dp"
+        android:paddingTop="20dp" />
 
     <Button
         android:layout_width="wrap_content"
