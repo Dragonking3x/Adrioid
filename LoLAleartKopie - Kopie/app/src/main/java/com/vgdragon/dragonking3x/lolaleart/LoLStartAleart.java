@@ -17,216 +17,103 @@ import java.net.UnknownHostException;
  */
 public class LoLStartAleart implements Runnable{
 
-
-
-
-
-    public Context getContext() {
-        return context;
-    }
-
-    public void setContext(Context context) {
-        this.context = context;
-    }
-
-    Context context;
-
-    public TextView getGameInfo() {
-        return gameInfo;
-    }
-
-    public void setGameInfo(TextView gameInfo) {
-        this.gameInfo = gameInfo;
-    }
-
-    TextView gameInfo;
-
-    public TextView getConnectTxt() {
-        return connectTxt;
-    }
-
-    public void setConnectTxt(TextView connectTxt) {
-        this.connectTxt = connectTxt;
-    }
-
-    TextView connectTxt;
-
-
     public String getIp() {
         return ip;
     }
-
     public void setIp(String ip) {
         this.ip = ip;
     }
-
     private String ip;
-
-
 
     public MainActivity getMa() {
         return ma;
     }
-
     public void setMa(MainActivity ma) {
         this.ma = ma;
     }
-
-    MainActivity ma;
-
-    public int getIAlive() {
-        return iAlive;
-    }
-
-    public void setIAlive(int iAlive) {
-        this.iAlive = iAlive;
-    }
-
-    private int iAlive = 0;
+    private MainActivity ma;
 
     public int getConnecting() {
         return connecting;
     }
-
     public void setConnecting(int connecting) {
         this.connecting = connecting;
     }
-
     private int connecting = 0;
 
     public int getExit() {
         return exit;
     }
-
     public void setExit(int exit) {
         this.exit = exit;
     }
-
     private int exit = 0;
-
 
     public PrintWriter getOut() {
         return out;
     }
-
     public void setOut(PrintWriter out) {
         this.out = out;
     }
-
-    PrintWriter out;
-
-
-
-
-
-
+    private PrintWriter out;
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     public void run(){
-        setIAlive(1);
-
 
         String IP = this.ip;
         int port = 20500;
         String gameStart = "";
         System.out.println("DDest");
 
-
-
-
-
-            if(connecting == 1) {
-
-
                 try (
-
                         Socket socket = new Socket(IP, port);
                         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                         //BufferedReader send = new BufferedReader(new InputStreamReader(System.in));
-
-
                 ) {
+
                     setOut(out);
 
-                    System.out.println("DDest02");
-
-
-                    //updateConnectTxt("CONNECTED");
-
+                    setConnecting(1);
+                    ma.setButtonTxt("Disconnect");
+                    ma.setGameinfo("");
                     ma.setConnectTxt("CONNECTED");
-                    //connectTxt.setText("CONNECTED");
-                    Thread.sleep(1000);
-
-
                     ma.setConnectButton(true);
 
+
                     while (getExit() == 0) {
+
                         gameStart = in.readLine();
                         ma.setGameinfo(gameStart);
+
                         if (gameStart.equalsIgnoreCase("Game Start")) {
                             ma.playSound();
-
                         }
-
 
                     }
 
-
                     setConnecting(0);
-                    System.out.println("exit");
-
-
+                    ma.setConnectTxt("Disconnected");
+                    ma.setButtonTxt("Connect");
                     in.close();
                     out.close();
                     socket.close();
 
 
-
-                    //disconnected();
-
-
-                    //return;
                 } catch (UnknownHostException e) {
                     e.printStackTrace();
-                    setConnecting(0);
-                    //disconnected();
-
-                    //return;
-
                 } catch (IOException e) {
                     e.printStackTrace();
-                    //disconnected();
-                    //return;
-
-
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-
-                    //disconnected();
-                    //return;
-
                 }
-            }
-
-
-
-
-
     }
+
     public void updateConnectTxt(String text){
         ma.setConnectTxt(text);
 
     }
 
-    public void disconnected(){
-        setExit(1);
-        setConnecting(0);
-        ma.setConnectTxt("Connect");
-        ma.setConnectButton(false);
 
-    }
 
 
 }
