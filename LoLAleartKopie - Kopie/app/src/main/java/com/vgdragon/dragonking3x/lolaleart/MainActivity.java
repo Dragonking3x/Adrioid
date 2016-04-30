@@ -165,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
                     lol.setConnecting(1);
                     connect.setText("Disconnect");
                     lol.setIAlive(1);
+                    lol.setExit(0);
                     final Thread t = new Thread(lol);
                     t.start();
                 }

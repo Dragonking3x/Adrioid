@@ -160,7 +160,8 @@ public class LoLStartAleart implements Runnable{
                     Thread.sleep(1000);
 
 
-                    //ma.setConnectButton(true);
+                    ma.setConnectButton(true);
+
                     while (getExit() == 0) {
                         gameStart = in.readLine();
                         ma.setGameinfo(gameStart);
@@ -171,6 +172,7 @@ public class LoLStartAleart implements Runnable{
 
 
                     }
+
 
                     setConnecting(0);
                     System.out.println("exit");
