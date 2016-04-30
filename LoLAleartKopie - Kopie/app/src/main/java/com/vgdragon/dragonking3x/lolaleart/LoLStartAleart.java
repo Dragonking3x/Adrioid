@@ -132,8 +132,6 @@ public class LoLStartAleart implements Runnable{
         String gameStart = "";
         System.out.println("DDest");
 
-        while (true) {
-
 
 
 
@@ -162,6 +160,7 @@ public class LoLStartAleart implements Runnable{
                     Thread.sleep(1000);
 
 
+                    //ma.setConnectButton(true);
                     while (getExit() == 0) {
                         gameStart = in.readLine();
                         ma.setGameinfo(gameStart);
@@ -172,32 +171,58 @@ public class LoLStartAleart implements Runnable{
 
 
                     }
+
                     setConnecting(0);
                     System.out.println("exit");
 
 
+                    in.close();
+                    out.close();
+                    socket.close();
+
+
+
+                    //disconnected();
+
+
+                    //return;
                 } catch (UnknownHostException e) {
                     e.printStackTrace();
                     setConnecting(0);
+                    //disconnected();
+
+                    //return;
 
                 } catch (IOException e) {
                     e.printStackTrace();
+                    //disconnected();
+                    //return;
 
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
 
+                    //disconnected();
+                    //return;
 
                 }
             }
 
-        }
+
 
 
 
     }
     public void updateConnectTxt(String text){
         ma.setConnectTxt(text);
+
+    }
+
+    public void disconnected(){
+        setExit(1);
+        setConnecting(0);
+        ma.setConnectTxt("Connect");
+        ma.setConnectButton(false);
 
     }
 
