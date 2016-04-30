@@ -90,10 +90,7 @@ public class LoLStartAleart implements Runnable{
                         }
 
                     }
-
-                    setConnecting(0);
-                    ma.setConnectTxtTxt("Disconnected");
-                    ma.setButtonTxt("Connect");
+                    
                     in.close();
                     out.close();
                     socket.close();
@@ -104,14 +101,13 @@ public class LoLStartAleart implements Runnable{
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
+        setConnecting(0);
+        ma.setConnectButton(false);
+        ma.setConnectTxtTxt("Disconnected");
+        ma.setButtonTxt("Connect");
+
+
     }
-
-    public void updateConnectTxt(String text){
-        ma.setConnectTxtTxt(text);
-
-    }
-
-
-
 
 }
