@@ -76,9 +76,8 @@ public class LoLStartAleart implements Runnable{
                     setConnecting(1);
                     ma.setButtonTxt("Disconnect");
                     ma.setGameInfoTxt("");
-                    ma.setConnectTxtTxt("CONNECTED");
+                    ma.setConnectTxtTxt("Connected");
                     ma.setConnectButton(true);
-
 
                     while (getExit() == 0) {
 
@@ -90,11 +89,10 @@ public class LoLStartAleart implements Runnable{
                         }
 
                     }
-                    
+
                     in.close();
                     out.close();
                     socket.close();
-
 
                 } catch (UnknownHostException e) {
                     e.printStackTrace();
