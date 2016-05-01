@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
         final LoLStartAleart lol = new LoLStartAleart();
 
-        lol.setIp(ipAdress.getText().toString());
+
         lol.setMa(ma);
 
         final Thread txtUpdate = new Thread() {
@@ -129,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
+                lol.setIp(ipAdress.getText().toString());
 
                 if(isConnectButton()){
                     lol.setExit(1);
